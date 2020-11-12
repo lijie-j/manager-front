@@ -37,7 +37,7 @@ export default {
     width:1109px;
     display:flex;
     .nav{
-      width:215px;
+      width:20%;
       height:calc(100% - 40px);
       background:#304156;
     }

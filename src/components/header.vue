@@ -26,7 +26,6 @@
           </template>
         </el-menu>
       </div>
-      <!-- <user-info></user-info> -->
     </div>
   </div>
 </template>
@@ -62,7 +61,12 @@ export default {
           name: '数据萃取',
           index: '5',
           url: '/data-extract'
-        }
+        },
+        {
+          name: '数据集成',
+          url: '/data-integrate',
+          index: '1'
+        },
       ]
     }
   },
@@ -126,7 +130,6 @@ export default {
     transform: translateY(-100%);
   }
   .header {
-    width: 1138px;
     height: 40px;
     display: flex;
     .header-left {
@@ -146,7 +149,7 @@ export default {
       width:147px;
     }
     .header-right {
-      width: 800px;
+      min-width: 600px;
       height: 40px;
     }
     .el-menu {
@@ -165,7 +168,7 @@ export default {
 }
 </style>
 <style lang="scss">
-  // .header-wrapper{
+  .header-wrapper{
     .el-menu.el-menu--horizontal{
       border-bottom:none;
     }
@@ -183,5 +186,5 @@ export default {
     .el-menu--horizontal>.el-menu-item{
       border-bottom:none;
     }
-  // }
+  }
 </style>
