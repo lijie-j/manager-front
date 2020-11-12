@@ -34,15 +34,19 @@ export default {
 </script>
 <style lang="scss" scoped>
   .data-integrate{
-    width:1109px;
     display:flex;
     .nav{
-      width:215px;
-      height:calc(100% - 40px);
+      flex:20%;
+      min-width:150px;
+      height:calc(100vh - 40px);
       background:#304156;
     }
     .container{
       margin-left:20px;
+      flex:80%;
+      display:flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 </style>

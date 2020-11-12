@@ -2,10 +2,7 @@
   <div id="app">
     <div class="main">
       <header-nav></header-nav>
-      <router-view>
-        <!-- <sideBar></sideBar>
-        <router-view></router-view> -->
-      </router-view>
+      <router-view></router-view>
     </div>
   </div>
 </template>

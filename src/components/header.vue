@@ -2,38 +2,16 @@
   <div class="header-wrapper" :class="{'header-wrapper-hide': !visible}">
     <div class="header">
       <div class="header-left">
-        <img src="@/assets/images/logo.png" alt class="logo" @click="returnhome" />
+        <img src="@/assets/images/logo.png" alt class="logo"/>
       </div>
       <div class="header-right">
-        <el-menu
-          :default-active="$route.path"
-          class="el-menu-wrapper"
-          align="center"
-          mode="horizontal"
-          text-color="#474747"
-          active-text-color="#1060FB"
-        >
-          <template v-for="(item, index) in routers" class="menu-items">
-            <template v-if="!item.children">
-              <el-menu-item :index="item.url" @click="routes(item)" :key="index">{{item.name}}</el-menu-item>
-            </template>
-            <!-- <template v-else>
-              <el-submenu :index="item.index" :key="index">
-                <template slot="title" @click="routes(item)" :index="item.url">{{item.name}}</template>
-                <el-menu-item v-for="(val, key) in item.children" :key="key" :index="val.url" @click="routes(val)">{{ val.name }}</el-menu-item>
-              </el-submenu>
-            </template> -->
-          </template>
-        </el-menu>
+        <a v-for="(item, index) in routers" :index="item.url" @click="routes(item)" :key="index">{{item.name}}</a>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
-const HIDE_HEIGHT = 420
 
 export default {
   name: 'Header',
@@ -61,47 +39,11 @@ export default {
           name: '数据萃取',
           index: '5',
           url: '/data-extract'
-        },
-        {
-          name: '数据集成',
-          url: '/data-integrate',
-          index: '1'
-        },
+        }
       ]
     }
   },
-  computed: {
-    ...mapGetters([
-      
-    ])
-  },
-  watch: {
-    
-  },
-  created() {
-    window.addEventListener('scroll', this._handleScroll)
-  },
-  beforeDestroy() {
-    window.removeEventListener('scroll', this._handleScroll)
-  },
   methods: {
-    returnhome() {
-      if (this.$route.name === 'home') return
-      this.$router.push({ name: 'home' })
-    },
-    _handleScroll() {
-      if (window.scrollY < this.scrollY) {
-        if (!this.visible) {
-          this.visible = true
-        }
-      }
-      if (window.scrollY >= HIDE_HEIGHT && window.scrollY > this.scrollY) {
-        if (this.visible) {
-          this.visible = false
-        }
-      }
-      this.scrollY = window.scrollY
-    },
     routes(val) {
       if (this.$route.fullPath === val.url) {
         return
@@ -118,6 +60,7 @@ export default {
 
 <style lang="scss" scoped>
 .header-wrapper {
+  height:40px;
   position: fixed;
   z-index: 99;
   top: 0;
@@ -130,13 +73,15 @@ export default {
     transform: translateY(-100%);
   }
   .header {
-    height: 40px;
     display: flex;
     .header-left {
-      width: 270px;
+      width: 20%;
       height: 40px;
       line-height: 40px;
       margin-top:10px;
+      display:flex;
+      align-items: center;
+      justify-content: center;
       img{
         width: auto;
         height:20px;
@@ -149,42 +94,20 @@ export default {
       width:147px;
     }
     .header-right {
-      min-width: 600px;
       height: 40px;
-    }
-    .el-menu {
-      li {
-        height: 40px;
-        line-height: 40px;
-        padding: 0;
-        margin: 0 28px;
-        font-size: 16px;
-        &:last-child {
-          margin-right: 0;
+      display: flex;
+      flex:1;
+      align-items: center;
+      a{
+        min-width:100px;
+        flex:0 1 15%;
+        color:#aaaaaa;
+        cursor: pointer;
+        &:hover{
+          color:#fff;
         }
       }
     }
   }
 }
-</style>
-<style lang="scss">
-  .header-wrapper{
-    .el-menu.el-menu--horizontal{
-      border-bottom:none;
-    }
-    .el-menu{
-      background:#000;
-    }
-    .el-menu-item{
-      color:#aaaaaa!important;
-      border-bottom-color:none!important;
-    }
-    .el-menu--horizontal>.el-menu-item:not(.is-disabled):hover, .el-menu--horizontal>.el-menu-item:not(.is-disabled):focus{
-      background:none;
-      color:#fff!important;
-    }
-    .el-menu--horizontal>.el-menu-item{
-      border-bottom:none;
-    }
-  }
 </style>
